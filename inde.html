@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surjo's Domain</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .rainbow-box {
+            background-color: black;
+            color: white;
+            border: 2px solid transparent;
+            background-image: linear-gradient(white, white), 
+                              linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            padding: 10px;
+            margin: 20px auto;
+            text-align: center;
+            width: 80%;
+            border-radius: 8px;
+        }
+        .rainbow-box a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .rainbow-box a:hover {
+            text-decoration: underline;
+        }
+        .form-box, .personal-details, .feedback-box, .safe-box {
+            background-color: white;
+            padding: 20px;
+            width: 80%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-box h2, .feedback-box h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .form-box input, .form-box select, .feedback-box textarea, .safe-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-box button, .feedback-box button, .safe-box button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .form-box button:hover, .feedback-box button:hover, .safe-box button:hover {
+            background-color: #0056b3;
+        }
+        .personal-details .details-section {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(to right, #20b2aa, #87ceeb);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .safe-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .safe-box input {
+            width: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Welcome to Surjo's Domain
+    </header>
+
+    <div class="rainbow-box">
+        Follow me on Instagram: <a href="https://www.instagram.com/s4dx_." target="_blank">s4dx._</a>
+    </div>
+
+    <div class="form-box">
+        <h2>Enter Your Details</h2>
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        
+        <label for="number">Phone Number</label>
+        <input type="text" id="number" required>
+        
+        <label for="instagram">Instagram ID</label>
+        <input type="text" id="instagram" required>
+        
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" required>
+        
+        <button onclick="submitForm()">Submit</button>
+    </div>
+
+    <div class="personal-details" id="personalDetails">
+        <div class="details-section">My Name - SwastickDas (But you can call me the prince of your dreams😉)</div>
+        <div class="details-section">My Nickname - Prince, Surjo, Baby (only for you babydoll😗)</div>
+        <div class="details-section" id="ageSection">My Age - </div>
+        <div class="details-section">State - West Bengal</div>
+        <div class="details-section">City - Kolkata</div>
+        <div class="details-section">Landmark - Baranagar</div>
+        <div class="details-section">My Hobbies - Cooking, Riding Bikes, Driving Cars, Gardening, Playing Guitar</div>
+        <div class="details-section">Achievement - Ex_Baranagar youth sporting Cricket Club Captain, State level under 16 player</div>
+        <div class="details-section">Behaviour - Serious, Caring, Loving</div>
+        <div class="details-section">Special Skills - I can change the way you walk</div>
+    </div>
+
+    <div class="feedback-box">
+        <h2>Feedback</h2>
+        <textarea id="feedback" placeholder="Share your experience..."></textarea>
+        <button onclick="submitFeedback()">Submit Feedback</button>
+    </div>
+
+    <div class="safe-box" id="safeBox">
+        <p>Safe Box - Enter Password to Access:</p>
+        <input type="password" id="safeBoxPassword">
+        <button onclick="unlockSafeBox()">Unlock</button>
+    </div>
+
+    <script>
+        function calculateAge(dob) {
+            const birthDate = new Date(dob);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const month = today.getMonth() - birthDate.getMonth();
+            if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        function submitForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const number = document.getElementById("number").value;
+            const instagram = document.getElementById("instagram").value;
+            const dob = document.getElementById("dob").value;
+
+            if (name && email && number && instagram && dob) {
+                document.querySelector(".form-box").style.display = "none";
+                const age = calculateAge(dob);
+                document.getElementById("ageSection").innerHTML = `My Age - ${age} (Age is just a number sweetheart, if you truly desire me I will be yours🙈)`;
+                document.getElementById("personalDetails").style.display = "block";
+            } else {
+                alert("Please fill in all the fields.");
+            }
+        }
+
+        function submitFeedback() {
+            const feedback = document.getElementById("feedback").value;
+            if (feedback) {
+                alert("Thank you for your feedback!");
+            } else {
+                alert("Please enter feedback.");
+            }
+        }
+
+        function unlockSafeBox() {
+            const password = document.getElementById("safeBoxPassword").value;
+            if (password === "990009") {
+                alert("Safe box unlocked!");
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
+        }
+    </script>
+
+</body>
+</html>
